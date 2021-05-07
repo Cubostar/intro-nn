@@ -11,7 +11,6 @@ print("Training data shape: ", x_train.shape) # (404, 13) 404 houses, 13 attribu
 print("Test data shape", x_test.shape) # (102, 13) 102 houses, 13 attributes
 print("Training labels shape: ", y_train.shape) # (404, ) 404 prices
 print("Test labels shape: ", y_test.shape) # (102, ) 102 prices
-print("Max price: ", max(y_train))
 
 # Reformat x's to be number of standard deviations for each attribute
 mean = x_train.mean(axis=0)
@@ -36,7 +35,7 @@ model.compile(optimizer='rmsprop',
               metrics=['mae'])
 
 history = model.fit(x_train, y_train, batch_size=128, epochs=5, verbose=False, validation_split=.1)
-loss, accuracy = model.evaluate(x_test, y_test, verbose=False)
+loss, mae = model.evaluate(x_test, y_test, verbose=False)
 print(history.history.keys())
 plt.plot(history.history['mae'])
 plt.plot(history.history['val_mae'])
@@ -46,6 +45,5 @@ plt.xlabel('epoch')
 plt.legend(['training', 'validation'], loc='best')
 plt.show()
 
-# TODO: Fix error here
 print(f'Test loss: {loss:.3}')
 print(f'Test mae: {mae:.3}')
