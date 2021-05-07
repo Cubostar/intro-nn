@@ -39,7 +39,7 @@ import matplotlib.pyplot as plt
 
 model.compile(optimizer="sgd", loss='categorical_crossentropy', metrics=['accuracy'])
 history = model.fit(x_train, y_train, batch_size=128, epochs=5, verbose=False, validation_split=.1)
-loss, accuracy  = model.evaluate(x_test, y_test, verbose=False)
+loss, accuracy = model.evaluate(x_test, y_test, verbose=False)
 print(history.history.keys())
 plt.plot(history.history['accuracy'])
 plt.plot(history.history['val_accuracy'])
